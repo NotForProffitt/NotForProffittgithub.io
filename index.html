@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+  <head> 
+    <script src="jquery.js"></script> 
+    <script> 
+    $(function(){
+      $("#myModal").load("modalList.html"); 
+    });
+    </script> 
+  </head> 
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -182,9 +190,9 @@ img.hover-shadow {
 <div class="w3-row" id="myGrid" style="margin-bottom:128px" data-toggle="modal" data-target="#exampleModal">
   <div class="w3-third">
     <img src="/images/IMG_3835.png" style="width:100%" alt="Love me to the mountains and back." id="mountainSign" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
-    <img src="/images/IMG_5153.png" style="width:100%" alt="Devils Tower up close" id="devilsTower">
-    <img src="/images/i-4Z3chqt-X3.jpg" style="width:100%" alt="Orange Milkweed up close" id="milkweed">
-    <img src="/images/i-HBkNMCg-X3.jpg" style="width:100%" alt="Small brown Ground Hog up close" id="groundHog">
+    <img src="/images/IMG_5153.png" style="width:100%" alt="Devils Tower up close" id="devilsTower" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+    <img src="/images/i-4Z3chqt-X3.jpg" style="width:100%" alt="Orange Milkweed up close" id="milkweed" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+    <img src="/images/i-HBkNMCg-X3.jpg" style="width:100%" alt="Small brown Ground Hog up close" id="groundHog" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
     <img src="/images/i-SrFqfz6-X3.jpg" style="width:100%" alt="Rusty blue-green tractor" id="tractor">
     <img src="/images/i-Bw8h3qV-X2.jpg" style="width:100%" alt="Small brown and blue Prairie Lizard on a rock" id="lizard">
   </div>
@@ -209,28 +217,102 @@ img.hover-shadow {
 </div>
 
 <div id="myModal" class="modal">
+</div>
+
+<!--
+<div id="myModal" class="modal">
   <span class="close cursor" onclick="closeModal()">&times;</span>
   <div class="modal-content">
 
     <div class="mySlides">
-      <div class="numbertext">1 / 4</div>
+      <div class="numbertext">1 / 18</div>
       <img src="/images/IMG_3835.png" style="width:100%">
     </div>
 
     <div class="mySlides">
-      <div class="numbertext">2 / 4</div>
+      <div class="numbertext">2 / 18</div>
       <img src="/images/IMG_5153.png" style="width:100%">
     </div>
 
     <div class="mySlides">
-      <div class="numbertext">3 / 4</div>
+      <div class="numbertext">3 / 18</div>
       <img src="/images/i-4Z3chqt-X3.jpg" style="width:100%">
     </div>
     
     <div class="mySlides">
-      <div class="numbertext">4 / 4</div>
+      <div class="numbertext">4 / 18</div>
       <img src="/images/i-HBkNMCg-X3.jpg" style="width:100%">
     </div>
+
+    <div class="mySlides">
+      <div class="numbertext">5 / 18</div>
+      <img src="/images/i-SrFqfz6-X3.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">6 / 18</div>
+      <img src="/images/i-Bw8h3qV-X2.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">7 / 18</div>
+      <img src="/images/i-zZVB6kG-X3.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">8 / 18</div>
+      <img src="/images/i-vQc3hcr-X2.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">9 / 18</div>
+      <img src="/images/i-kQkSpKg-X3.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">10 / 18</div>
+      <img src="/images/i-jgv62cK-X3.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">11 / 18</div>
+      <img src="/images/i-k4R47rt-X3.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">12 / 18</div>
+      <img src="/images/i-RdB7gNB-X2.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">13 / 18</div>
+      <img src="/images/IMG_4622.png" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">14 / 18</div>
+      <img src="/images/IMG_5146.png" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">15 / 18</div>
+      <img src="/images/i-42gBG5v-X3.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">16 / 18</div>
+      <img src="/images/i-9vXQr94-X3.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">17 / 18</div>
+      <img src="/images/i-3ZLrwGJ-X3.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">18 / 18</div>
+      <img src="/images/i-D959spm-X3.jpg" style="width:100%">
+    </div>1
     
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -238,6 +320,7 @@ img.hover-shadow {
     <div class="caption-container">
       <p id="caption"></p>
     </div>
+  -->
 
 <!-- End Page Content -->
 </div>
