@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-  
+
    body,h1 {
 
 font-family: "Montserrat", sans-serif}
@@ -191,7 +191,7 @@ img.hover-shadow {
 </div>
 
 <!-- Photo Grid -->
-<div class="w3-row" id="myGrid" style="margin-bottom:128px" data-toggle="modal" data-target="#exampleModal">
+<div class="w3-row-padding" id="myGrid" style="margin-bottom:128px" data-toggle="modal" data-target="#exampleModal">
   <div class="w3-third">
     <img src="/images/IMG_3835.png" style="width:100%" alt="Love me to the mountains and back." id="mountainSign" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
     <img src="/images/IMG_5153.png" style="width:100%" alt="Devils Tower up close" id="devilsTower" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
@@ -340,10 +340,10 @@ img.hover-shadow {
 // Toggle grid padding
 function myFunction() {
   var x = document.getElementById("myGrid");
-  if (x.className === "w3-row") {
-    x.className = "w3-row-padding";
+  if (x.className === "w3-row-padding") {
+    x.className = "w3-row";
   } else { 
-    x.className = x.className.replace("w3-row-padding", "w3-row");
+    x.className = x.className.replace("w3-row", "w3-row-padding");
   }
 }
 
