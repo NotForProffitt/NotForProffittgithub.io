@@ -1,394 +1,211 @@
 <!DOCTYPE html>
-<html> 
-<title>photo page</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html lang="en">
 <style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
 
-   body,h1 {
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #f6ebda;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
 
-font-family: "Montserrat", sans-serif}
-img {margin-bottom: -7px}
-.w3-row-padding img {margin-bottom: 12px}
+    .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #646464;
+        display: block;
+        transition: 0.3s;
+    }
 
-* {
-  box-sizing: border-box;
-}
+    .sidebar a:hover {
+        color: #0f0f0f;
+    }
 
-.row > .column {
-  padding: 0 8px;
-}
+    .managebtn {
+        position: fixed;
+        z-index: 99;
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #111;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 50%;
+    }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+    .managebtn:hover {
+        background-color: rgb(46, 46, 46);
+    }
 
-.column {
-  float: left;
-  width: 25%;
-}
+    .managebtnClose {
+        transform: rotate(0deg);
+        transition: transform .5s linear;
+    }
 
-/* The Modal (background) */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: black;
-  margin-left: auto;
-  margin-right: auto;
-}
+    .managebtnOpen {
+        transform: rotate(180deg);
+        transition: transform .5s linear;
+    }
 
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  width: 90%;
-  max-width: 1200px;
-}
+    #menu {
+        transition: margin-left .5s;
+        padding: 16px;
+    }
 
-/* The Close Button */
-.close {
-  color: white;
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 35px;
-  font-weight: bold;
-}
+    .shadow {
+        outline-style: solid;
+        outline-color: rgba(24, 24, 24, 0.308);
+        box-shadow: 10px 10px 15px 5px #222;
+    }
 
-.close:hover,
-.close:focus {
-  color: #999;
-  text-decoration: none;
-  cursor: pointer;
-}
+    .text {
+        color: #faebd7;
+        font-family: 'Courier';
+    }
 
-.mySlides {
-  display: none;
-}
+    .inline {
+        display: flex;
+    }
 
-.cursor {
-  cursor: pointer;
-}
-
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-img {
-  margin-bottom: -4px;
-}
-
-.caption-container {
-  text-align: center;
-  background-color: black;
-  padding: 2px 16px;
-  color: white;
-}
-
-.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 0.8;
-}
-
-img.hover-shadow {
-  transition: 0.3s;
-}
-
-.hover-shadow:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+    .footer {
+        position: relative;
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        background-color: rgb(24, 24, 24);
+        text-align: center;
+    }
 
 </style>
 
-<body>
+<head>
+    <title>NotForProffitt Photography</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS file -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
 
-<!-- Sidebar -->
-<nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-black w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
-    <i class="fa fa-remove"></i>
-  </a>
-  <div class="w3-bar-block w3-center">
-    <a href="pages/aboutPage.html" class="w3-bar-item w3-button w3-text-grey w3-hover-black">About</a>
-    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Photos</a>
-    <a href="pages/shopPage.html" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Shop</a>
-    <a href="pages/contactPage.html" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Contact</a>
-  </div>
-</nav>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-content" style="max-width:1500px">
-
-<!-- Header -->
-<div class="w3-opacity">
-<span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span> 
-<div class="w3-clear"></div>
-<header class="w3-center w3-margin-bottom">
-  <h1><b>NotForProffitt's Photography</b></h1>
-  <p><b>nature to astrophotography!</b></p>
-  <p class="w3-padding-16"><button class="w3-button w3-black" onclick="myFunction()">Toggle Grid Padding</button></p>
-</header>
-</div>
-
-<!-- Photo Grid -->
-<div class="w3-row-padding" id="myGrid" style="margin-bottom:128px" data-toggle="modal" data-target="#exampleModal">
-  <div class="w3-third">
-    <img src="/images/IMG_3835.png" style="width:100%" alt="Love me to the mountains and back." id="mountainSign" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
-    <img src="/images/IMG_5153.png" style="width:100%" alt="Devils Tower up close" id="devilsTower" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
-    <img src="/images/i-4Z3chqt-X3.jpg" style="width:100%" alt="Orange Milkweed up close" id="milkweed" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
-    <img src="/images/i-HBkNMCg-X3.jpg" style="width:100%" alt="Small brown Ground Hog up close" id="groundHog" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
-    <img src="/images/i-SrFqfz6-X3.jpg" style="width:100%" alt="Rusty blue-green tractor" id="tractor" onclick="openModal();currentSlide(5)" class="hover-shadow cursor">
-    <img src="/images/i-Bw8h3qV-X2.jpg" style="width:100%" alt="Small brown and blue Prairie Lizard on a rock" id="lizard" onclick="openModal();currentSlide(6)" class="hover-shadow cursor">
-  </div>
-
-  <div class="w3-third">
-    <img src="/images/i-zZVB6kG-X3.jpg" style="width:100%" alt="Yosemite Valley with waterfall in the distance" onclick="openModal();currentSlide(7)" class="hover-shadow cursor">
-    <img src="/images/i-vQc3hcr-X2.jpg" style="width:100%" alt="Dead tree in volcanic rock" onclick="openModal();currentSlide(8)" class="hover-shadow cursor">
-    <img src="/images/i-kQkSpKg-X3.jpg" style="width:100%" alt="Icy river with snowy mountain in the distance" onclick="openModal();currentSlide(9)" class="hover-shadow cursor">
-    <img src="/images/i-jgv62cK-X3.jpg" style="width:100%" alt="Rocky beach of a lake" onclick="openModal();currentSlide(10)" class="hover-shadow cursor">
-    <img src="/images/i-k4R47rt-X3.jpg" style="width:100%" alt="Lake with mountains rising into the clouds in the distance" onclick="openModal();currentSlide(11)" class="hover-shadow cursor">
-    <img src="/images/i-RdB7gNB-X2.jpg" style="width:100%" alt="Alternate view of Devils Tower up close" onclick="openModal();currentSlide(12)" class="hover-shadow cursor">
-  </div>
-
-  <div class="w3-third">
-    <img src="/images/IMG_4622.png" style="width:100%" alt="Fallen tree stump in sundappled forest" onclick="openModal();currentSlide(13)" class="hover-shadow cursor">
-    <img src="/images/IMG_5146.png" style="width:100%" alt="Quiet lake with Grand Tetons mountain range in the distance" onclick="openModal();currentSlide(14)" class="hover-shadow cursor">
-    <img src="/images/i-42gBG5v-X3.jpg" style="width:100%" alt="American Bison shedding fur" onclick="openModal();currentSlide(15)" class="hover-shadow cursor">
-    <img src="/images/i-9vXQr94-X3.jpg" style="width:100%" alt="Yellowstone field with smoldering sulfur pit in the distance" onclick="openModal();currentSlide(16)" class="hover-shadow cursor">
-    <img src="/images/i-3ZLrwGJ-X3.jpg" style="width:100%" alt="Halfdome rising about Yosemite Valley" onclick="openModal();currentSlide(17)" class="hover-shadow cursor">
-    <img src="/images/i-D959spm-X3.jpg" style="width:100%" alt="Moving river with Grand Tetons mountain range rising into the clouds in the distance" onclick="openModal();currentSlide(18)" class="hover-shadow cursor">
-  </div>
-</div>
-
-<!--<div id="myModal" class="modal"> 
-  </div>-->
-
-<div id="myModal" class="modal">
-  <span class="close cursor" onclick="closeModal()">&times;</span>
-
-    <div class="mySlides modal-content">
-      <div class="numberText">1 / 18</div>
-      <img src="/images/IMG_3835.png" style="max-width:100%; max-height: 100vh">
+<body style="background-color:rgb(29, 29, 29);">
+    <div id="menu">
+        <button id="sidebarbtn" class="managebtn managebtnClose" onclick="manageNav()">˃</button>
     </div>
 
-    <div class="mySlides modal-content">
-      <div class="numberText">2 / 18</div>
-      <img src="/images/IMG_5153.png" style="max-width:100%; max-height: 100vh">
+    <div id="infoSidebar" class="sidebar">
+        <a href="index.html">Gallery</a>
+        <a href="https://notforproffitt.com/">Shop</a>
+        <a href="index.html">Clients</a>
+        <a href="index.html">Contact</a>
     </div>
 
-    <div class="mySlides modal-content">
-      <div class="numberText">3 / 18</div>
-      <img src="/images/i-4Z3chqt-X3.jpg" style="max-width:100%; max-height: 100vh">
-    </div>
-    
-    <div class="mySlides modal-content">
-      <div class="numberText">4 / 18</div>
-      <img src="/images/i-HBkNMCg-X3.jpg" style="max-width:100%; max-height: 100vh">
+    <div id="group" class="text" style="text-align:center; position:relative; margin-top: -40px;">
+        <p style="font-size:225%; margin-top:1%;">NotForProffitt's Portfolio</p>
+        <p style="font-size:125%; position:relative; margin-top: -25px;">nature and candid photography</p>
+        <img class="shadow" style="margin-top: 15px;" src="tractor.jpg" width=70% height=auto alt="tractor">
     </div>
 
-    <div class="mySlides modal-content">
-      <div class="numberText">5 / 18</div>
-      <img src="/images/i-SrFqfz6-X3.jpg" style="max-width:100%; max-height: 100vh">
+    <div style="text-align: center; margin-top: 40px; scale: 50%;">
+        <img class="text" src="pageDivider.png" width=75% height=auto alt="pgDivide">
     </div>
 
-    <div class="mySlides modal-content">
-      <div class="numberText">6 / 18</div>
-      <img src="/images/i-Bw8h3qV-X2.jpg" style="max-width:100%; max-height: 100vh">
+    <div>
+        <p class="text" style="margin: 11%; margin-top: 3%; margin-bottom: 0%;">&nbsp;&nbsp; Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Duis eleifend
+            lorem eu consectetur placerat. Duis mauris felis, pellentesque non porta vitae, semper ut magna. Suspendisse
+            quis aliquam ligula. Donec faucibus
+            consectetur porttitor. Fusce bibendum felis sed tellus convallis maximus. Etiam iaculis arcu vel libero
+            porttitor, ut accumsan elit pellentesque.
+            Aliquam dolor purus, tristique quis risus et, convallis congue odio. In rhoncus mauris vel lobortis
+            iaculis.<br /> <br /> &nbsp;&nbsp; Maecenas
+            dapibus turpis sed tellus ornare efficitur. Suspendisse vehicula velit libero, in efficitur nibh faucibus
+            vel. Nullam id tincidunt magna.
+            Suspendisse vel arcu dictum, tempus lectus eget, vehicula eros. Mauris ac velit ac leo dignissim tincidunt.
+            Morbi ut est nunc. Nullam laoreet blandit nibh,
+            vitae dictum ligula sagittis eget. Aliquam bibendum, mauris sit amet efficitur tempor, nibh purus elementum
+            eros, sed luctus elit nulla in est. Nulla facilisi.
+            Etiam urna magna, laoreet nec blandit at, placerat gravida est. Sed consectetur convallis consectetur.
+            Mauris ac velit felis. Praesent imperdiet, massa
+            at vehicula dictum, nisl est fringilla ligula, ac finibus nisi arcu eleifend orci. Sed varius magna in leo
+            hendrerit, a lobortis enim porttitor.
+            Phasellus in vulputate quam. </p>
     </div>
 
-    <div class="mySlides modal-content">
-      <div class="numberText">7 / 18</div>
-      <img src="/images/i-zZVB6kG-X3.jpg" style="max-width:100%; max-height: 100vh">
+    <div>
+        <div class="inline">
+            <img class="shadow" src="IMG_3835.png" width=30% style="margin-left:12%; margin-top: 5%;">
+            <p class="text"
+                style="margin-top:5%; margin-left:2%; margin-right: 11%; vertical-align:top; text-align: left;"><br />
+                Etiam faucibus ex eu quam pharetra lobortis. Cras massa est, pretium nec nunc sed, sagittis euismod
+                lorem. Duis placerat non felis id dapibus.
+                Curabitur tincidunt ultrices elit ut vestibulum. Vivamus laoreet metus et ipsum imperdiet, in fringilla
+                felis lobortis. Pellentesque commodo non
+                orci quis vehicula. </p>
+        </div>
+
+        <div class="inline">
+            <p class="text"
+                style="margin-top:7%; margin-left:11%; margin-right: 2%; vertical-align:top; text-align: right;">
+                <br />Aenean sit amet placerat lectus, sit
+                amet scelerisque nisi. Mauris posuere ut nulla ut aliquet. Duis viverra nisi dolor, eu tincidunt nibh
+                convallis quis. In tincidunt feugiat est,
+                vitae fringilla augue tempus non. In et arcu gravida, iaculis velit in, lobortis lectus. Phasellus
+                tempor auctor diam, sit amet posuere augue
+                convallis non. Ut eget turpis sapien. </p>
+            <img class="shadow" src="i-42gBG5v-X3.jpg" width=30% style="margin-right:12%; margin-top: 7%;">
+        </div>
+
+        <div class="inline">
+            <img class="shadow" src="i-zZVB6kG-X3.jpg" width=30% style="margin-left:12%; margin-top: 7%;">
+            <p class="text"
+                style="margin-top:7%; margin-left:2%; margin-right: 11%; vertical-align:top; text-align: left;">
+                <br />Sed euismod nunc sapien, non eleifend ligula euismod et. In auctor egestas risus, sed pulvinar
+                erat congue ut. Praesent efficitur elit at elementum placerat. Aliquam tempor, erat id tristique
+                euismod, felis urna molestie metus, id molestie metus justo nec magna. Nulla vestibulum condimentum
+                semper. Curabitur vestibulum tellus eu dui consequat consectetur. Ut dapibus risus eget sem tincidunt
+                suscipit. </p>
+        </div>
+
     </div>
 
-    <div class="mySlides modal-content">
-      <div class="numberText">8 / 18</div>
-      <img src="/images/i-vQc3hcr-X2.jpg" style="max-width:100%; max-height: 100vh">
+    <div id="finalSpacing" style="padding-bottom: 100px;"></div>
+
+    <div class="footer text" style="color:rgb(116, 116, 116)">
+        <p>Thomas Proffitt &copy;</p>
     </div>
 
-    <div class="mySlides modal-content">
-      <div class="numberText">9 / 18</div>
-      <img src="/images/i-kQkSpKg-X3.jpg" style="max-width:100%; max-height: 100vh">
-    </div>
+    <script>
+        var isOpen = 0;
+        function manageNav() {
+            if (isOpen) {
+                document.getElementById("infoSidebar").style.width = "0";
+                document.getElementById("infoSidebar").className = "sidebar";
+                document.getElementById("menu").style.marginLeft = "0";
+                sidebarbtn.className = 'managebtn managebtnClose';
+                isOpen = 0;
+            }
+            else if (!isOpen) {
+                document.getElementById("infoSidebar").style.width = "250px";
+                document.getElementById("infoSidebar").className = "sidebar shadow";
+                document.getElementById("menu").style.marginLeft = "250px";
+                sidebarbtn.className = 'managebtn managebtnOpen';
+                isOpen = 1;
+            }
+        }
 
-    <div class="mySlides modal-content">
-      <div class="numberText">10 / 18</div>
-      <img src="/images/i-jgv62cK-X3.jpg" style="max-width:100%; max-height: 100vh">
-    </div>
-
-    <div class="mySlides modal-content">
-      <div class="numberText">11 / 18</div>
-      <img src="/images/i-k4R47rt-X3.jpg" style="max-width:100%; max-height: 100vh">
-    </div>
-
-    <div class="mySlides modal-content">
-      <div class="numberText">12 / 18</div>
-      <img src="/images/i-RdB7gNB-X2.jpg" style="max-width:100%; max-height: 100vh">
-    </div>
-
-    <div class="mySlides modal-content">
-      <div class="numberText">13 / 18</div>
-      <img src="/images/IMG_4622.png" style="max-width:100%; max-height: 100vh">
-    </div>
-
-    <div class="mySlides modal-content">
-      <div class="numberText">14 / 18</div>
-      <img src="/images/IMG_5146.png" style="max-width:100%; max-height: 100vh">
-    </div>
-
-    <div class="mySlides modal-content">
-      <div class="numberText">15 / 18</div>
-      <img src="/images/i-42gBG5v-X3.jpg" style="max-width:100%; max-height: 100vh">
-    </div>
-
-    <div class="mySlides modal-content">
-      <div class="numberText">16 / 18</div>
-      <img src="/images/i-9vXQr94-X3.jpg" style="max-width:100%; max-height: 100vh">
-    </div>
-
-    <div class="mySlides modal-content">
-      <div class="numberText">17 / 18</div>
-      <img src="/images/i-3ZLrwGJ-X3.jpg" style="max-width:100%; max-height: 100vh">
-    </div>
-
-    <div class="mySlides modal-content">
-      <div class="numberText">18 / 18</div>
-      <img src="/images/i-D959spm-X3.jpg" style="max-width:100%; max-height: 100vh">
-    </div>
-    
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-    <div class="caption-container">
-      <p id="caption"></p>
-
-<!-- End Page Content -->
-</div>
-</div>
-
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin-top:128px"> 
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
- 
-<script>
-// Toggle grid padding
-function myFunction() {
-  var x = document.getElementById("myGrid");
-  if (x.className === "w3-row-padding") {
-    x.className = "w3-row";
-  } else { 
-    x.className = x.className.replace("w3-row", "w3-row-padding");
-  }
-}
-
-// Open and close sidebar
-function w3_open() {
-  document.getElementById("mySidebar").style.width = "100%";
-  document.getElementById("mySidebar").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
-
-function openModal() {
-  document.getElementById("myModal").style.display = "block";
-}
-
-function closeModal() {
-  document.getElementById("myModal").style.display = "none";
-}
-
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  var captionText = document.getElementById("caption");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  captionText.innerHTML = dots[slideIndex-1].alt;
-}
-
-</script>
-
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
-</html>
 
+</html>
